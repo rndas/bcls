@@ -1,0 +1,283 @@
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>BCLS Through History</title>
+<meta name="description" content="Demonstration of grouping content in pure CSS parallax scrolling website">
+<style>
+
+/* XD prototype link:  https://xd.adobe.com/view/12869016-6b14-4256-9d39-16e38e8afd8d-47d5/ */
+
+  /* Parallax base styles
+  --------------------------------------------- */
+
+  .parallax {
+    height: 500px; /* fallback for older browsers */
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-perspective: 300px;
+    perspective: 300px;
+  }
+
+  .parallax__group {
+    position: relative;
+    height: 500px; /* fallback for older browsers */
+    height: 100vh;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+
+  .parallax__layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .parallax__layer--fore {
+    -webkit-transform: translateZ(90px) scale(.7);
+    transform: translateZ(90px) scale(.7);
+    z-index: 1;
+  }
+
+  .parallax__layer--base {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    z-index: 4;
+  }
+
+  .parallax__layer--back {
+    -webkit-transform: translateZ(-300px) scale(2);
+    transform: translateZ(-300px) scale(2);
+    z-index: 3;
+  }
+
+  .parallax__layer--deep {
+    -webkit-transform: translateZ(-600px) scale(3);
+    transform: translateZ(-600px) scale(3);
+    z-index: 2;
+  }
+
+
+  /* Debugger styles - used to show the effect
+  --------------------------------------------- 
+
+  .debug {
+    position: fixed;
+    top: 0;
+    left: .5em;
+    z-index: 999;
+    background: rgba(0,0,0,.85);
+    color: #fff;
+    padding: .5em;
+    border-radius: 0 0 5px 5px;
+  }
+  .debug-on .parallax__group {
+    -webkit-transform: translate3d(800px, 0, -800px) rotateY(30deg);
+    transform: translate3d(700px, 0, -800px) rotateY(30deg);
+ }
+  .debug-on .parallax__layer {
+    box-shadow: 0 0 0 2px #000;
+    opacity: 0.9;
+  }
+  .parallax__group {
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+  }
+*/
+
+  /* demo styles
+  --------------------------------------------- */
+
+  body, html {
+    overflow: hidden;
+  }
+
+  body {
+    font: 100% / 1.5 Arial;
+  }
+
+  * {
+    margin:0;
+    padding:0;
+  }
+
+  .parallax {
+    font-size: 200%;
+  }
+
+   /* centre the content in the parallax layers */
+  .title {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+
+  /* style the groups
+  --------------------------------------------- */
+
+  #group1 {
+    z-index: 5; /* slide over group 2 */
+  }
+  #group1 .parallax__layer--base {
+    background: rgb(102,204,102);
+  }
+
+  #group2 {
+    z-index: 3; /* slide under groups 1 and 3 */
+  }
+
+  #group2 .parallax__layer--back {
+    background: rgb(123,210,102);
+  }
+
+  #group3 {
+    z-index: 4; /* slide over group 2 and 4 */
+  }
+  #group3 .parallax__layer--base {
+    background: rgb(153,216,101);
+  }
+
+  #group4 {
+    z-index: 2; /* slide under group 3 and 5 */
+  }
+  #group4 .parallax__layer--deep {
+    background: rgb(184,223,101);
+  }
+
+  #group5 {
+    z-index: 3; /* slide over group 4 and 6 */
+  }
+  #group5 .parallax__layer--base {
+    background: rgb(0,0,0);
+  }
+
+  #group6 {
+    z-index: 2; /* slide under group 5 and 7 */
+  }
+  #group6 .parallax__layer--back {
+    background: rgb(245,235,100);
+  }
+
+  #group7 {
+    z-index: 3; /* slide over group 7 */
+  }
+  #group7 .parallax__layer--base {
+    background: rgb(255,241,100);
+  }
+
+</style>
+</head>
+
+<body>
+
+  <div class="parallax">
+    <div id="group1" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+        <div class="title">Scroll Through BCLS History
+
+        </div>
+      </div>
+    </div>
+    <div id="group2" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+        <div class="title">
+
+          <h1> Where did your library system start? </h1>
+
+        </div>
+      </div>
+      <div class="parallax__layer parallax__layer--back">
+        <div class="title">
+          <img src="nj.png" style="width: 1400px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- 1921 Mapbox section -->
+    <div id="group3" class="parallax__group">
+      <div class="parallax__layer parallax__layer--fore">
+        <img src="mountholly_library1.png" height="600px" style="padding-left:40px;">
+        <div class="title">
+          <h2> 1921: The First County Library</h2>
+          <iframe src="mapbox.html" width="600" height="300" title="mapbox" style="border:none;"></iframe>
+
+        </div>
+      </div>
+      <div class="parallax__layer parallax__layer--base">
+        <div class="title">
+            <img src="mountholly_library2.png" width="400px" style="padding-top:500px; padding-left:750px;">
+            <img src="adeline_pratt.png" height="200px" style="float:right; padding-bottom:700px; margin-top:50px; margin-right:50px;">
+        </div>
+      </div>
+    </div>
+    <div id="group4" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+        <div class="title">Base Layer</div>
+      </div>
+      <div class="parallax__layer parallax__layer--back">
+        <div class="title">Background Layer</div>
+      </div>
+      <div class="parallax__layer parallax__layer--deep">
+        <div class="title">Deep Background Layer</div>
+      </div>
+    </div>
+
+    <!-- bookmobile section -->
+    <div id="group5" class="parallax__group">
+      <div class="parallax__layer parallax__layer--fore" style="color: white;margin-top: 100px; padding-right:400px;">
+        <h4> After resigning two years later, Pratt continues to showcase BCLS and drives Bookmobile to Maryland to promote library services to remote areas in that state. Bookmobile could be opened vertically to expose rows of books- about 500 volumes could be carried. </h4>
+        <div class="title"></div>
+      </div>
+      <div class="parallax__layer parallax__layer--base">
+        <div class="title">
+          <img src="bookmobile.png" height="600px">
+
+        </div>
+      </div>
+    </div>
+    <div id="group6" class="parallax__group">
+      <div class="parallax__layer parallax__layer--back" style="float:left; padding-top:100px;">
+        <h4> Bookmobile in History </h4>
+        <div class="title">  </div>
+      </div>
+      <div class="parallax__layer parallax__layer--base">
+        <div class="title">
+          <img src="bookmobile_ages.png" height="250px">
+        </div>
+      </div>
+    </div>
+    <div id="group7" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base" style="padding-left:300px; padding-top:300px;">
+        <h4> Look back soon for more BCLS history! </h4>
+        <div class="title">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script async="" src="//www.google-analytics.com/analytics.js"></script><script>
+    var debugInput = document.querySelector("input");
+    function updateDebugState() {
+        document.body.classList.toggle('debug-on', debugInput.checked);
+    }
+    debugInput.addEventListener("click", updateDebugState);
+    updateDebugState();
+  </script>
+
+  <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-10812217-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+</body></html>
